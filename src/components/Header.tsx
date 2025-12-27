@@ -62,28 +62,66 @@ const Header: React.FC = () => {
         </button>
       </div>
 
-      {/* Mobile Menu */}
-      {isMobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-black border-b border-white/10 p-6 flex flex-col gap-4 animate-in fade-in slide-in-from-top-4">
-          {navLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              className="text-lg font-medium text-gray-300 py-2 border-b border-white/5"
+      {/* Mobile Menu Overlay & Drawer */}
+      <div
+        className={`fixed inset-0 z-50 md:hidden transition-all duration-500 ${isMobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+          }`}
+      >
+        {/* Backdrop */}
+        <div
+          className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+          onClick={() => setIsMobileMenuOpen(false)}
+        />
+
+        {/* Drawer */}
+        <div
+          className={`absolute top-0 right-0 h-full w-[85%] max-w-[360px] bg-black/90 backdrop-blur-xl border-l border-white/10 p-8 flex flex-col transition-transform duration-500 ease-out ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+            }`}
+        >
+          <div className="flex justify-end mb-12">
+            <button
               onClick={() => setIsMobileMenuOpen(false)}
+              className="p-2 rounded-full bg-white/5 text-white hover:bg-white/10 transition-colors"
             >
-              {link.label}
-            </a>
-          ))}
-          <a
-            href="#register"
-            className="bg-blue-600 text-white py-4 rounded-xl text-center font-bold mt-2"
-            onClick={() => setIsMobileMenuOpen(false)}
-          >
-            Register Now
-          </a>
+              <X size={24} />
+            </button>
+          </div>
+
+          <div className="flex flex-col gap-8">
+            {navLinks.map((link, idx) => (
+              <Link
+                key={link.label}
+                href={link.href}
+                className={`text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 hover:to-blue-400 transition-all duration-300 transform ${isMobileMenuOpen ? 'translate-x-0 opacity-100' : 'translate-x-8 opacity-0'
+                  }`}
+                style={{ transitionDelay: `${idx * 100}ms` }}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {link.label}
+              </Link>
+            ))}
+
+            <div
+              className={`mt-8 pt-8 border-t border-white/10 ${isMobileMenuOpen ? 'translate-x-0 opacity-100' : 'translate-x-8 opacity-0'
+                }`}
+              style={{ transitionDelay: '300ms' }}
+            >
+              <Link
+                href="/register"
+                className="flex items-center justify-center gap-3 w-full bg-blue-600 text-white py-5 rounded-2xl font-bold text-lg hover:bg-blue-500 transition-all"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                <Rocket size={20} />
+                Join the Tank
+              </Link>
+            </div>
+          </div>
+
+          {/* Decorative Elements */}
+          <div className="absolute bottom-0 right-0 w-64 h-64 bg-blue-600/10 rounded-full blur-[80px] pointer-events-none" />
+          <div className="absolute top-1/2 left-0 w-48 h-48 bg-purple-600/10 rounded-full blur-[60px] pointer-events-none" />
         </div>
-      )}
+      </div>
     </header>
   );
 };
