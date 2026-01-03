@@ -70,7 +70,7 @@ const ContactPage = () => {
                                         <div>
                                             <p className="text-sm text-gray-500 uppercase font-bold tracking-wider mb-1">Email Us</p>
                                             <a href="mailto:hello@thinktankcampus.com" className="text-lg md:text-xl font-medium text-white hover:text-blue-400 transition-colors">
-                                                team@thinktankcampus.com
+                                                support@thinktankcampus.com
                                             </a>
                                         </div>
                                     </div>
@@ -101,6 +101,8 @@ const ContactPage = () => {
                             </div>
 
                             {/* Community Card */}
+                        
+                        </div>
                             <div className="glass-panel p-8 md:p-10 rounded-[2rem] border border-white/10 relative overflow-hidden group hover:border-purple-500/30 transition-all duration-500">
                                 <div className="absolute top-0 right-0 w-32 h-32 bg-purple-600/10 rounded-full blur-3xl group-hover:bg-purple-600/20 transition-all"></div>
                                 <h3 className="text-2xl font-bold mb-4 flex items-center gap-3">
@@ -118,10 +120,9 @@ const ContactPage = () => {
                                     ))}
                                 </div>
                             </div>
-                        </div>
 
                         {/* Contact Form */}
-                        <div className="glass-panel p-8 md:p-12 rounded-[2.5rem] border border-white/10 relative">
+                        {/* <div className="glass-panel p-8 md:p-12 rounded-[2.5rem] border border-white/10 relative">
                             <h3 className="text-3xl font-black mb-8">Send a Message</h3>
                             <form onSubmit={handleSubmit} className="space-y-6">
                                 <div className="grid md:grid-cols-2 gap-6">
@@ -185,7 +186,7 @@ const ContactPage = () => {
                                     <ArrowRight className="group-hover:translate-x-1 transition-transform" />
                                 </button>
                             </form>
-                        </div>
+                        </div> */}
 
                     </div>
                 </div>

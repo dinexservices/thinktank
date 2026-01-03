@@ -27,20 +27,31 @@ const RegistrationForm: React.FC = () => {
         dispatch(fetchRegistrationForm());
     }, [dispatch]);
 
+    // Mock tickets for fallback when backend is unreachable
+    const MOCK_TICKETS = [
+        { _id: 'mock-pitch-1', type: 'Pitching Startup' },
+        { _id: 'mock-pitch-2', type: '2 Person Pitching Startup' },
+        { _id: 'mock-expo', type: 'Startup Expo' },
+        { _id: 'mock-delegate', type: 'Event Delegate Pass' }
+    ];
+
+    // Use API data or fallback to mock data
+    const tickets = apiFormData?.tickets || MOCK_TICKETS;
+
     // Get ticket ID based on active tab and team size
     const getTicketId = () => {
-        if (!apiFormData?.tickets) return null;
+        if (!tickets) return null;
 
         if (activeTab === 'pitching') {
             if (formData.teamSize === '2') {
-                return apiFormData.tickets.find((t: any) => t.type === '2 Person Pitching Startup')?._id;
+                return tickets.find((t: any) => t.type === '2 Person Pitching Startup')?._id;
             } else {
-                return apiFormData.tickets.find((t: any) => t.type === 'Pitching Startup')?._id;
+                return tickets.find((t: any) => t.type === 'Pitching Startup')?._id;
             }
         } else if (activeTab === 'expo') {
-            return apiFormData.tickets.find((t: any) => t.type === 'Startup Expo')?._id;
+            return tickets.find((t: any) => t.type === 'Startup Expo')?._id;
         } else if (activeTab === 'delegate') {
-            return apiFormData.tickets.find((t: any) => t.type === 'Event Delegate Pass')?._id;
+            return tickets.find((t: any) => t.type === 'Event Delegate Pass')?._id;
         }
         return null;
     };
@@ -105,14 +116,14 @@ const RegistrationForm: React.FC = () => {
                         name: formData.name,
                         email: formData.email,
                         phone: formData.phone,
-                        dynamicFields: dynamicFields
+                    
                     },
                     groupMembers: [
                         {
                             name: formData.name2,
                             email: formData.email2,
                             phone: formData.phone2,
-                            dynamicFields: dynamicFields
+                          
                         }
                     ],
                     couponCode: null
@@ -134,6 +145,7 @@ const RegistrationForm: React.FC = () => {
 
             if (register.fulfilled.match(actionResult) || registerGroup.fulfilled.match(actionResult)) {
                 const response = actionResult.payload;
+                console.log('Registration Response:', response?.data?.payment?.id);
 
                 // Check if payment is required
                 if (response?.code === 'PAYMENT_REQUIRED' && response?.data?.payment?.id) {
@@ -221,26 +233,26 @@ const RegistrationForm: React.FC = () => {
     }
 
     // Show error if form data failed to load but allow retry
-    if (formError && !apiFormData) {
-        return (
-            <section id="register" className="min-h-screen flex items-center justify-center bg-black relative">
-                <div className="absolute inset-0 bg-blue-600/10 blur-[100px] rounded-full transform scale-50"></div>
-                <div className="text-center p-12 glass-panel rounded-[3rem] max-w-2xl mx-auto z-10">
-                    <div className="text-red-500 text-6xl mb-4">⚠️</div>
-                    <h2 className="text-3xl font-bold text-white mb-4">Failed to load form</h2>
-                    <p className="text-gray-400 mb-6">
-                        {typeof formError === 'string' ? formError : formError?.message || 'Unable to fetch registration form'}
-                    </p>
-                    <button
-                        onClick={() => dispatch(fetchRegistrationForm())}
-                        className="bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-4 rounded-2xl transition-all"
-                    >
-                        Retry
-                    </button>
-                </div>
-            </section>
-        );
-    }
+    // if (formError && !apiFormData) {
+    //     return (
+    //         <section id="register" className="min-h-screen flex items-center justify-center bg-black relative">
+    //             <div className="absolute inset-0 bg-blue-600/10 blur-[100px] rounded-full transform scale-50"></div>
+    //             <div className="text-center p-12 glass-panel rounded-[3rem] max-w-2xl mx-auto z-10">
+    //                 <div className="text-red-500 text-6xl mb-4">⚠️</div>
+    //                 <h2 className="text-3xl font-bold text-white mb-4">Failed to load form</h2>
+    //                 <p className="text-gray-400 mb-6">
+    //                     {typeof formError === 'string' ? formError : formError?.message || 'Unable to fetch registration form'}
+    //                 </p>
+    //                 <button
+    //                     onClick={() => dispatch(fetchRegistrationForm())}
+    //                     className="bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-4 rounded-2xl transition-all"
+    //                     >
+    //                     Retry
+    //                 </button>
+    //             </div>
+    //         </section>
+    //     );
+    // }
 
     return (
         <section id="register" className="py-24 relative bg-black overflow-hidden">
@@ -329,7 +341,7 @@ const RegistrationForm: React.FC = () => {
                         {/* Common Fields */}
                         <div className="grid md:grid-cols-2 gap-6 mb-6">
                             <div className="space-y-2">
-                                <label className="text-xs font-bold uppercase tracking-wider text-gray-500 ml-1">Full Name</label>
+                                <label className="text-xs font-bold uppercase tracking-wider text-gray-500 ml-1">Full Name <span className="text-red-500">*</span></label>
                                 <input
                                     required
                                     name="name"
@@ -341,7 +353,7 @@ const RegistrationForm: React.FC = () => {
                                 />
                             </div>
                             <div className="space-y-2">
-                                <label className="text-xs font-bold uppercase tracking-wider text-gray-500 ml-1">Email Address</label>
+                                <label className="text-xs font-bold uppercase tracking-wider text-gray-500 ml-1">Email Address <span className="text-red-500">*</span></label>
                                 <input
                                     required
                                     name="email"
@@ -356,7 +368,7 @@ const RegistrationForm: React.FC = () => {
 
                         <div className="grid md:grid-cols-2 gap-6 mb-6">
                             <div className="space-y-2">
-                                <label className="text-xs font-bold uppercase tracking-wider text-gray-500 ml-1">Phone Number</label>
+                                <label className="text-xs font-bold uppercase tracking-wider text-gray-500 ml-1">Phone Number <span className="text-red-500">*</span></label>
                                 <input
                                     required
                                     name="phone"
@@ -368,7 +380,7 @@ const RegistrationForm: React.FC = () => {
                                 />
                             </div>
                             <div className="space-y-2">
-                                <label className="text-xs font-bold uppercase tracking-wider text-gray-500 ml-1">College / Organization</label>
+                                <label className="text-xs font-bold uppercase tracking-wider text-gray-500 ml-1">College / Organization <span className="text-red-500">*</span></label>
                                 <input
                                     required
                                     name="college"
@@ -386,7 +398,7 @@ const RegistrationForm: React.FC = () => {
                             <>
                                 <div className="grid md:grid-cols-2 gap-6 mb-6">
                                     <div className="space-y-2">
-                                        <label className="text-xs font-bold uppercase tracking-wider text-gray-500 ml-1">Startup Name</label>
+                                        <label className="text-xs font-bold uppercase tracking-wider text-gray-500 ml-1">Startup Name <span className="text-red-500">*</span></label>
                                         <input
                                             required
                                             name="startupName"
@@ -417,7 +429,7 @@ const RegistrationForm: React.FC = () => {
                                         </h4>
                                         <div className="grid md:grid-cols-2 gap-6 mb-4">
                                             <div className="space-y-2">
-                                                <label className="text-xs font-bold uppercase tracking-wider text-gray-500 ml-1">Full Name</label>
+                                                <label className="text-xs font-bold uppercase tracking-wider text-gray-500 ml-1">Full Name <span className="text-red-500">*</span></label>
                                                 <input
                                                     required
                                                     name="name2"
@@ -429,7 +441,7 @@ const RegistrationForm: React.FC = () => {
                                                 />
                                             </div>
                                             <div className="space-y-2">
-                                                <label className="text-xs font-bold uppercase tracking-wider text-gray-500 ml-1">Email Address</label>
+                                                <label className="text-xs font-bold uppercase tracking-wider text-gray-500 ml-1">Email Address <span className="text-red-500">*</span></label>
                                                 <input
                                                     required
                                                     name="email2"
@@ -442,7 +454,7 @@ const RegistrationForm: React.FC = () => {
                                             </div>
                                         </div>
                                         <div className="space-y-2">
-                                            <label className="text-xs font-bold uppercase tracking-wider text-gray-500 ml-1">Phone Number</label>
+                                            <label className="text-xs font-bold uppercase tracking-wider text-gray-500 ml-1">Phone Number <span className="text-red-500">*</span></label>
                                             <input
                                                 required
                                                 name="phone2"
@@ -498,7 +510,7 @@ const RegistrationForm: React.FC = () => {
                             <>
                                 <div className="grid md:grid-cols-2 gap-6 mb-6">
                                     <div className="space-y-2">
-                                        <label className="text-xs font-bold uppercase tracking-wider text-gray-500 ml-1">Startup Name</label>
+                                        <label className="text-xs font-bold uppercase tracking-wider text-gray-500 ml-1">Startup Name <span className="text-red-500">*</span></label>
                                         <input
                                             required
                                             name="startupName"
@@ -519,7 +531,7 @@ const RegistrationForm: React.FC = () => {
                                     </div>
                                 </div>
                                 <div className="mb-6 space-y-2">
-                                    <label className="text-xs font-bold uppercase tracking-wider text-gray-500 ml-1">Product Description</label>
+                                    <label className="text-xs font-bold uppercase tracking-wider text-gray-500 ml-1">Product Description <span className="text-red-500">*</span></label>
                                     <textarea
                                         required
                                         name="description"

@@ -59,14 +59,14 @@ const EventSchedule = () => {
                                     </h3>
                                 </div>
 
-                                <div className="space-y-8 w-full">
+                                <div className="lg:space-y-14 space-y-10 w-full">
                                     <div className="flex justify-center gap-8 text-center mb-2">
                                         <div>
-                                            <h4 className="font-black text-gray-800 uppercase text-sm md:text-base">PITCHING<br />SESSION</h4>
+                                            <h4 className="font-black text-gray-800 uppercase text-sm md:text-base">PITCHING SESSION</h4>
                                         </div>
                                         <div className="w-px bg-gray-300 h-10"></div>
                                         <div>
-                                            <h4 className="font-black text-gray-800 uppercase text-sm md:text-base">STARTUP<br />EXPO</h4>
+                                            <h4 className="font-black text-gray-800 uppercase text-sm md:text-base">STARTUP EXPO</h4>
                                         </div>
                                     </div>
 

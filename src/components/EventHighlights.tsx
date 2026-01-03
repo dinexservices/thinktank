@@ -88,7 +88,7 @@ const EventHighlights: React.FC = () => {
     return (
         <section className="py-20 md:py-32 relative overflow-hidden">
             {/* Background Texture */}
-            <div className="absolute inset-0 bg-[url('/noise.png')] opacity-5 pointer-events-none"></div>
+            <div className="absolute inset-0 pointer-events-none"></div>
 
             <div className="container mx-auto px-4 md:px-8 relative z-10">
                 <RevealOnScroll>

@@ -4,6 +4,9 @@ import React from 'react';
 import { ArrowRight, Play, Users, TrendingUp, Globe, Rocket } from 'lucide-react';
 import Link from 'next/link';
 import LogoMarquee from './LogoMarquee';
+import Image from 'next/image';
+
+const logo = "/sponsor/rebelive.jpeg"
 
 const Hero: React.FC = () => {
     return (
@@ -18,19 +21,21 @@ const Hero: React.FC = () => {
                 <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
 
                     {/* Main Content - Left Aligned for better readability */}
+                    {/* Main Content - Left Aligned for better readability */}
                     <div className="flex-1 text-center lg:text-left z-10">
-                        <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full glass-panel text-blue-300 text-sm font-medium mb-10 hover:bg-white/5 transition-colors cursor-default">
-                            <span className="relative flex h-2 w-2">
-                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
-                            </span>
-                            <span>Applications Closing Soon</span>
-                        </div>
+                        <div className="inline-flex flex-col items-center">
+                            <div className="inline-flex flex-col items-center gap-2 mb-4">
+                                <Image src={logo} alt="ThinkTank" width={170} height={170} className="object-contain" />
+                                <p className="text-sm font-bold tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-200 to-white">
+                                    PRESENTS
+                                </p>
+                            </div>
 
-                        <h1 className="text-6xl md:text-8xl lg:text-9xl font-black mb-8 leading-[0.9] tracking-tighter">
-                            THINK <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-200 to-white">TANK</span>
-                        </h1>
+                            <h1 className="text-center lg:text-left text-6xl md:text-8xl lg:text-9xl font-black mb-8 leading-[0.9] tracking-tighter">
+                                THINK <br />
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-200 to-white">TANK</span>
+                            </h1>
+                        </div>
 
                         <p className="text-lg md:text-2xl text-gray-400 max-w-xl mb-12 leading-relaxed font-light lg:ml-2">
                             The premier student founder ecosystem. <br className="hidden md:block" />
@@ -44,7 +49,7 @@ const Hero: React.FC = () => {
                             >
                                 Apply Now
                             </Link>
-                          
+
                         </div>
                     </div>
 

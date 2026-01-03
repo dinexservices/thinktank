@@ -2,6 +2,8 @@
 import React from 'react';
 import { ArrowRight, Zap, Target, Users, ShoppingBag, Rocket, TrendingUp, Globe, Briefcase } from 'lucide-react';
 import Image from 'next/image';
+import Investors from './Investors';
+
 
 const logo = '/logo.png';
 const AboutEvent: React.FC = () => {
@@ -21,7 +23,7 @@ const AboutEvent: React.FC = () => {
                             <span>The Biggest Campus Startup Event</span>
                         </div>
 
-                        <h2 className="text-5xl md:text-8xl font-black uppercase tracking-tighter leading-[0.9]">
+                        <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-[0.9]">
                             About <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-100 via-blue-400 to-blue-600 animate-gradient-x ">The Event</span>
                         </h2>
 
@@ -37,7 +39,7 @@ const AboutEvent: React.FC = () => {
                 </div>
 
                 {/* Marquee Section */}
-                <div className="mb-24 -mx-4 md:-mx-8 overflow-hidden py-8 bg-white/5 border-y border-white/5 backdrop-blur-sm relative">
+                <div className="mb-12 -mx-4 md:-mx-8 overflow-hidden py-8 bg-white/5 border-y border-white/5 backdrop-blur-sm relative">
                     <div className="flex animate-marquee whitespace-nowrap gap-16 items-center">
                         {[...Array(4)].map((_, i) => (
                             <React.Fragment key={i}>
@@ -54,6 +56,10 @@ const AboutEvent: React.FC = () => {
                     <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-black to-transparent z-10"></div>
                 </div>
 
+
+   <div>
+          <Investors />
+        </div>
                 {/* Bottom Section: Why This Event Matters */}
                 <div className="container mx-auto relative mb-32">
                     <div className="text-center mb-16 md:mb-24">
