@@ -11,7 +11,7 @@ import ErrorModal from './ErrorModal';
 import { RegistrationError } from '../types/auth';
 
 const RegistrationForm: React.FC = () => {
-    const [activeTab, setActiveTab] = useState<RegistrationType>('pitching');
+    const [activeTab, setActiveTab] = useState<RegistrationType>('delegate');
     const [submitted, setSubmitted] = useState(false);
     const dispatch = useDispatch<any>();
     const router = useRouter();
@@ -193,9 +193,10 @@ const RegistrationForm: React.FC = () => {
     };
 
     const tabs: { id: RegistrationType; label: string; icon: React.ReactNode }[] = [
+          { id: 'delegate', label: 'Event Delegate', icon: <User size={20} /> },
         { id: 'pitching', label: 'Pitching Startups', icon: <Rocket size={20} /> },
         { id: 'expo', label: 'Startup Expo', icon: <Store size={20} /> },
-        { id: 'delegate', label: 'Event Delegate', icon: <User size={20} /> },
+      
     ];
 
     if (submitted) {
@@ -307,13 +308,22 @@ const RegistrationForm: React.FC = () => {
 
                         {/* Dynamic Pricing Banner */}
                         <div className="mb-10 text-center bg-white/5 p-6 rounded-2xl border border-white/5">
+                          {activeTab === 'delegate' && (
+                                <div>
+                                    <h3 className="text-2xl font-black text-white mb-2">Event Delegate Pass</h3>
+                                    <div className="flex justify-center text-gray-300">
+                                        <p><span className="text-blue-400 font-bold text-xl">₹699</span> / person</p>
+                                    </div>
+                                    <p className="text-sm text-gray-500 mt-2">Access to all sessions & networking</p>
+                                </div>
+                            )}
                             {activeTab === 'pitching' && (
                                 <div>
                                     <h3 className="text-2xl font-black text-white mb-2">Pitching Startup</h3>
                                     <div className="flex flex-col md:flex-row justify-center gap-4 text-gray-300">
                                         <p><span className="text-blue-400 font-bold text-xl">₹1,499</span> / person</p>
                                         <span className="hidden md:block text-gray-600">|</span>
-                                        <p><span className="text-blue-400 font-bold text-xl">₹2,799</span> / 2 team members</p>
+                                        <p><span className="text-blue-400 font-bold text-xl">₹2,499</span> / 2 team members</p>
                                     </div>
                                     <p className="text-sm text-gray-500 mt-2">Includes food (Excludes accommodation)</p>
                                 </div>
@@ -322,20 +332,12 @@ const RegistrationForm: React.FC = () => {
                                 <div>
                                     <h3 className="text-2xl font-black text-white mb-2">Startup Expo</h3>
                                     <div className="flex justify-center text-gray-300">
-                                        <p><span className="text-blue-400 font-bold text-xl">₹14,999</span> / Startup (max 2 persons)</p>
+                                        <p><span className="text-blue-400 font-bold text-xl">₹10,000</span> / Startup (max 2 persons)</p>
                                     </div>
                                     <p className="text-sm text-gray-500 mt-2">Limited seats available</p>
                                 </div>
                             )}
-                            {activeTab === 'delegate' && (
-                                <div>
-                                    <h3 className="text-2xl font-black text-white mb-2">Event Delegate Pass</h3>
-                                    <div className="flex justify-center text-gray-300">
-                                        <p><span className="text-blue-400 font-bold text-xl">₹599</span> / person</p>
-                                    </div>
-                                    <p className="text-sm text-gray-500 mt-2">Access to all sessions & networking</p>
-                                </div>
-                            )}
+                          
                         </div>
 
                         {/* Common Fields */}

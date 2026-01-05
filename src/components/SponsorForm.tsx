@@ -1,7 +1,7 @@
 'use client'
 import React, { useState } from 'react';
 import { Loader2, Download, X } from 'lucide-react';
-import * as XLSX from 'xlsx';
+
 
 const SponsorForm = ({ onClose }: { onClose?: () => void }) => {
     const [formData, setFormData] = useState({
@@ -22,19 +22,18 @@ const SponsorForm = ({ onClose }: { onClose?: () => void }) => {
         setErrorMessage('');
 
         try {
-            // Create Excel workbook and worksheet
-            const wb = XLSX.utils.book_new();
-            const wsData = [
-                ['Name', 'Email', 'Phone', 'Timestamp'], // Header
-                [formData.name, formData.email, formData.phone, new Date().toISOString()] // Data row
-            ];
-            const ws = XLSX.utils.aoa_to_sheet(wsData);
+            // Call API to save data
+            const response = await fetch('/api/save-sponsor-data', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
 
-            // Add worksheet to workbook
-            XLSX.utils.book_append_sheet(wb, ws, 'Sponsor Data');
-
-            // Generate Excel file and trigger download
-            XLSX.writeFile(wb, 'ThinkTank_Sponsor_Data.xlsx');
+            if (!response.ok) {
+                throw new Error('Failed to save data');
+            }
 
             setStatus('success');
 
@@ -125,7 +124,7 @@ const SponsorForm = ({ onClose }: { onClose?: () => void }) => {
                 )}
 
                 {status === 'success' && (
-                    <p className="text-green-300 text-sm text-center">Thanks! Downloading Excel & Deck...</p>
+                    <p className="text-green-300 text-sm text-center">Thanks! Downloading Deck...</p>
                 )}
 
                 <button

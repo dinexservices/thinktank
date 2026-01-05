@@ -69,7 +69,7 @@ const Hero: React.FC = () => {
                                         {[
                                             { val: '100K+', label: 'Footfall' },
                                             { val: '₹1000 Cr+', label: 'Investor Network' },
-                                            { val: '500+', label: 'Campuses' },
+                                            { val: '100+', label: 'Campuses' },
                                             { val: '50+', label: 'Investors' },
                                         ].map((stat, i) => (
                                             <div key={i} className="flex flex-col">

@@ -4,18 +4,19 @@ import React from 'react';
 import Image from 'next/image';
 
 const amar="/investors/Amar.png";
+const abhiram="/investors/Abhiram.jpeg";
 
 
 const investors = [
     { name: 'Amar Dixit', role: 'Founding partner & CIO swiftSeed Ventures', image: amar },
-    { name: 'Lauren Pybus', role: 'VP, Growth & Development', image: amar },
-    { name: 'Raelene Thomas', role: 'VP, Finance & Operations', image: amar },
-    { name: 'Mitchell Fawcett', role: 'VP, Strategy', image: amar },
-    { name: 'Jieun Segal', role: 'VP, Sales & Marketing', image: amar },
-    { name: 'Darren Maher', role: 'Creative Director', image: amar },
-    { name: 'Ben Van Exan', role: 'Snr Account Executive', image: amar },
-    { name: 'John Blown', role: 'Founding Partner', image: amar },
-    { name: 'Chris Breikss', role: 'Founding Partner', image: amar },
+    { name: 'Abhiram Bhalerao ', role: 'Partner V3 venture', image: abhiram },
+    // { name: 'Raelene Thomas', role: 'VP, Finance & Operations', image: amar },
+    // { name: 'Mitchell Fawcett', role: 'VP, Strategy', image: amar },
+    // { name: 'Jieun Segal', role: 'VP, Sales & Marketing', image: amar },
+    // { name: 'Darren Maher', role: 'Creative Director', image: amar },
+    // { name: 'Ben Van Exan', role: 'Snr Account Executive', image: amar },
+    // { name: 'John Blown', role: 'Founding Partner', image: amar },
+    // { name: 'Chris Breikss', role: 'Founding Partner', image: amar },
 ];
 
 const Investors: React.FC = () => {
