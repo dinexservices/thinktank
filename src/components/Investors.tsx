@@ -3,10 +3,10 @@ import React from 'react';
 
 import Image from 'next/image';
 
-const amar="/investors/Amar.png";
-const abhiram="/investors/Abhiram.jpeg";
-const mudit="/investors/Mudit.jpeg";
-const suraj="/investors/Suraj.png";
+const amar="/investors/amar.png";
+const abhiram="/investors/abhiram.jpeg";
+const mudit="/investors/mudit.jpeg";
+const suraj="/investors/suraj.png";
 
 
 const investors = [
