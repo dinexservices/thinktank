@@ -29,7 +29,7 @@ const Investors: React.FC = () => {
             <div className="container mx-auto px-4 md:px-8">
                 <div className="text-center mb-16 md:mb-24">
                     <h2 className="text-4xl md:text-6xl font-black text-white mb-4">
-                        MEET THE <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-100 to-blue-600">INVESTORS</span>
+                        MEET OUR <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-100 to-blue-600">INVESTORS</span>
                     </h2>
                 </div>
 
