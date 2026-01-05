@@ -12,7 +12,7 @@ const suraj="/investors/Suraj.png";
 const investors = [
     { name: 'Amar Dixit', role: 'Founding partner & CIO swiftSeed Ventures', image: amar },
     { name: 'Abhiram Bhalerao ', role: 'Partner V3 venture', image: abhiram },
-    { name: 'Mudit Kumar', role: 'Founder of Ideabaaz', image: mudit },
+    { name: 'Mudit Kumar', role: 'CO-Founder of Ideabaaz', image: mudit },
     { name: 'Suraj Juneja', role: 'Founder of Freeflow venture', image: suraj },
     // { name: 'Raelene Thomas', role: 'VP, Finance & Operations', image: amar },
     // { name: 'Mitchell Fawcett', role: 'VP, Strategy', image: amar },
