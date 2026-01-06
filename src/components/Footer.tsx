@@ -28,13 +28,13 @@ const Footer: React.FC = () => {
             <p className="text-gray-400 max-w-md text-lg leading-relaxed mb-8">
               Empowering the student-founder ecosystem across India. An inclusive platform where brands, investors, and students converge to build the future.
             </p>
-          
+
           </div>
 
           <div className="col-span-1 md:col-span-2">
             <h4 className="font-bold mb-8 uppercase text-xs tracking-widest text-gray-500">Contact Organizer</h4>
             <div className="grid sm:grid-cols-2 gap-8">
-             
+
               <div className="flex gap-4">
                 <div className="w-10 h-10 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-500 shrink-0">
                   <Phone size={18} />
@@ -61,22 +61,24 @@ const Footer: React.FC = () => {
                   <div className="text-sm font-bold">Official Inquiries</div>
                   <a href="mailto:team@thinktankcampus.com" className="text-gray-400 hover:text-white transition-colors">team@thinktankcampus.com</a>
                 </div>
-                 </div>
-                  <div className="flex gap-4">
-              {socialLinks.map((link, i) => (
-                <a key={i} href={link.href} className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center hover:bg-blue-600 transition-colors border border-white/10">
-                  <link.icon size={20} />
-                </a>
-              ))}
-            </div>
-             
+              </div>
+              <div className="flex gap-4">
+                {socialLinks.map((link, i) => (
+                  <a key={i} href={link.href} className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center hover:bg-blue-600 transition-colors border border-white/10">
+                    <link.icon size={20} />
+                  </a>
+                ))}
+              </div>
+
             </div>
           </div>
         </div>
 
-        <div className="pt-6 border-t border-white/5 flex flex-col md:row items-center justify-between gap-4 text-sm text-gray-500">
+        <div className="pt-6 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500">
           <p>© 2026 Think Tank Campus. All rights reserved.</p>
-
+          <p>
+            Developed by <a href="https://dinestx.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">Dinex services</a>
+          </p>
         </div>
       </div>
     </footer>

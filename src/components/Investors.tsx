@@ -7,6 +7,7 @@ const amar="/investors/Amar.png";
 const abhiram="/investors/Abhiram.jpeg";
 const mudit="/investors/Mudit.jpeg";
 const suraj="/investors/Suraj.png";
+const shishir="/investors/Shishir.jpeg";
 
 
 const investors = [
@@ -14,13 +15,9 @@ const investors = [
     { name: 'Abhiram Bhalerao ', role: 'Partner V3 venture', image: abhiram },
     { name: 'Mudit Kumar', role: 'CO-Founder of Ideabaaz', image: mudit },
     { name: 'Suraj Juneja', role: 'Founder of Freeflow venture', image: suraj },
-    // { name: 'Raelene Thomas', role: 'VP, Finance & Operations', image: amar },
-    // { name: 'Mitchell Fawcett', role: 'VP, Strategy', image: amar },
-    // { name: 'Jieun Segal', role: 'VP, Sales & Marketing', image: amar },
-    // { name: 'Darren Maher', role: 'Creative Director', image: amar },
-    // { name: 'Ben Van Exan', role: 'Snr Account Executive', image: amar },
-    // { name: 'John Blown', role: 'Founding Partner', image: amar },
-    // { name: 'Chris Breikss', role: 'Founding Partner', image: amar },
+    { name: 'Dr. Shishir Gupta', role: 'Managing Director of StartupLanes', image: shishir },
+ 
+ 
 ];
 
 const Investors: React.FC = () => {
@@ -33,7 +30,7 @@ const Investors: React.FC = () => {
                     </h2>
                 </div>
 
-                <div className="flex flex-wrap justify-center gap-10 md:gap-x-20 md:gap-y-16 max-w-6xl mx-auto">
+                <div className="flex flex-wrap justify-center gap-10 md:gap-x-20 md:gap-y-16 max-w-8xl mx-auto">
                     {investors.map((person, index) => (
                         <div key={index} className="flex flex-col items-center text-center group w-36 md:w-56">
                             <div className="relative w-32 h-32 md:w-48 md:h-48 mb-6 rounded-full overflow-hidden border-4 border-white/5 group-hover:border-blue-500/50 transition-colors duration-300 bg-white/5">

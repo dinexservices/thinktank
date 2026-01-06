@@ -4,10 +4,10 @@ import Image from 'next/image';
 const logos = [
 
     { name: 'Startup India', src: '/dpit.jpg' },
-    { name: 'Official Partner', src: '/logo.png' },
+    { name: 'Ideabaaz', src: '/sponsor/Ideabaaz.png' },
+      
+  
 
-    { name: 'Startup India', src: '/dpit.jpg' },
-    { name: 'Official Partner', src: '/logo.png' },
 ];
 
 const LogoMarquee = () => {
