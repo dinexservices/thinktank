@@ -332,7 +332,7 @@ const RegistrationForm: React.FC = () => {
                                 <div>
                                     <h3 className="text-2xl font-black text-white mb-2">Startup Expo</h3>
                                     <div className="flex justify-center text-gray-300">
-                                        <p><span className="text-blue-400 font-bold text-xl">₹10,000</span> / Startup (max 2 persons)</p>
+                                        <p><span className="text-blue-400 font-bold text-xl">₹9,999</span> / Startup (max 2 persons)</p>
                                     </div>
                                     <p className="text-sm text-gray-500 mt-2">Limited seats available</p>
                                 </div>
@@ -418,7 +418,7 @@ const RegistrationForm: React.FC = () => {
                                             className="w-full bg-black/20 border border-white/10 rounded-xl px-5 py-4 text-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all"
                                         >
                                             <option value="1" className="bg-black text-white">1 Person (₹1,499)</option>
-                                            <option value="2" className="bg-black text-white">2 Members (₹2,799)</option>
+                                            <option value="2" className="bg-black text-white">2 Members (₹2,499)</option>
                                         </select>
                                     </div>
                                 </div>
