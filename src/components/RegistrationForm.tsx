@@ -13,6 +13,7 @@ import { RegistrationError } from '../types/auth';
 const RegistrationForm: React.FC = () => {
     const [activeTab, setActiveTab] = useState<RegistrationType>('delegate');
     const [submitted, setSubmitted] = useState(false);
+    const [needAccommodation, setNeedAccommodation] = useState(false);
     const dispatch = useDispatch<any>();
     const router = useRouter();
     const [loading, setLoading] = useState(false);
@@ -30,9 +31,12 @@ const RegistrationForm: React.FC = () => {
     // Mock tickets for fallback when backend is unreachable
     const MOCK_TICKETS = [
         { _id: 'mock-pitch-1', type: 'Pitching Startup' },
+        { _id: 'mock-pitch-1-accom', type: 'Pitching Startup + Accommodation' },
         { _id: 'mock-pitch-2', type: '2 Person Pitching Startup' },
+        { _id: 'mock-pitch-2-accom', type: '2 Person Pitching Startup + Accommodation' },
         { _id: 'mock-expo', type: 'Startup Expo' },
-        { _id: 'mock-delegate', type: 'Event Delegate Pass' }
+        { _id: 'mock-delegate', type: 'Event Delegate Pass' },
+        { _id: 'mock-delegate-accom', type: 'Event Delegate Pass + Accommodation' }
     ];
 
     // Use API data or fallback to mock data
@@ -51,7 +55,7 @@ const RegistrationForm: React.FC = () => {
         } else if (activeTab === 'expo') {
             return tickets.find((t: any) => t.type === 'Startup Expo')?._id;
         } else if (activeTab === 'delegate') {
-            return tickets.find((t: any) => t.type === 'Event Delegate Pass')?._id;
+            return tickets.find((t: any) => t.type === (needAccommodation ? 'Event Delegate Pass + Accommodation' : 'Event Delegate Pass'))?._id;
         }
         return null;
     };
@@ -116,14 +120,14 @@ const RegistrationForm: React.FC = () => {
                         name: formData.name,
                         email: formData.email,
                         phone: formData.phone,
-                    
+
                     },
                     groupMembers: [
                         {
                             name: formData.name2,
                             email: formData.email2,
                             phone: formData.phone2,
-                          
+
                         }
                     ],
                     couponCode: null
@@ -193,10 +197,10 @@ const RegistrationForm: React.FC = () => {
     };
 
     const tabs: { id: RegistrationType; label: string; icon: React.ReactNode }[] = [
-          { id: 'delegate', label: 'Event Delegate', icon: <User size={20} /> },
+        { id: 'delegate', label: 'Event Delegate', icon: <User size={20} /> },
         { id: 'pitching', label: 'Pitching Startups', icon: <Rocket size={20} /> },
         { id: 'expo', label: 'Startup Expo', icon: <Store size={20} /> },
-      
+
     ];
 
     if (submitted) {
@@ -308,13 +312,13 @@ const RegistrationForm: React.FC = () => {
 
                         {/* Dynamic Pricing Banner */}
                         <div className="mb-10 text-center bg-white/5 p-6 rounded-2xl border border-white/5">
-                          {activeTab === 'delegate' && (
+                            {activeTab === 'delegate' && (
                                 <div>
                                     <h3 className="text-2xl font-black text-white mb-2">Event Delegate Pass</h3>
                                     <div className="flex justify-center text-gray-300">
-                                        <p><span className="text-blue-400 font-bold text-xl">₹699</span> / person</p>
+                                        <p><span className="text-blue-400 font-bold text-xl">{needAccommodation ? '₹1,699' : '₹699'}</span> / person</p>
                                     </div>
-                                    <p className="text-sm text-gray-500 mt-2">Access to all sessions & networking</p>
+                                    <p className="text-sm text-gray-500 mt-2">Access to all sessions & networking {needAccommodation && '+ Food & Stay'}</p>
                                 </div>
                             )}
                             {activeTab === 'pitching' && (
@@ -337,7 +341,26 @@ const RegistrationForm: React.FC = () => {
                                     <p className="text-sm text-gray-500 mt-2">Limited seats available</p>
                                 </div>
                             )}
-                          
+
+                            {/* Accommodation Checkbox */}
+                            {activeTab === 'delegate' && (
+                                <div className="mt-6 flex justify-center">
+                                    <label className="flex items-center gap-3 cursor-pointer group bg-black/40 px-4 py-2 rounded-xl border border-white/5 hover:border-blue-500/50 transition-all">
+                                        <div className={`w-6 h-6 rounded-md border-2 flex items-center justify-center transition-colors ${needAccommodation ? 'bg-blue-600 border-blue-600' : 'border-gray-500 group-hover:border-blue-400'}`}>
+                                            {needAccommodation && <CheckCircle size={16} className="text-white" />}
+                                        </div>
+                                        <input
+                                            type="checkbox"
+                                            className="hidden"
+                                            checked={needAccommodation}
+                                            onChange={(e) => setNeedAccommodation(e.target.checked)}
+                                        />
+                                        <span className={`text-xs lg:text-sm font-medium ${needAccommodation ? 'text-white' : 'text-gray-400 group-hover:text-gray-300'}`}>
+                                            I need Food & Accommodation (Non-LPU Participants)
+                                        </span>
+                                    </label>
+                                </div>
+                            )}
                         </div>
 
                         {/* Common Fields */}
