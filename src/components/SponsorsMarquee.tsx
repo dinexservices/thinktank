@@ -7,6 +7,7 @@ const sponsorsSource = [
     { name: 'Dinex Services', src: '/sponsor/dinex.png' },
     { name: 'Rebelive', src: '/sponsor/rebelive.jpeg' },
     { name: 'Collabify', src: '/sponsor/collabify.png' },
+    {name:'Orgatik',src:'/sponsor/orgatik.png'}
 
 ];
 
